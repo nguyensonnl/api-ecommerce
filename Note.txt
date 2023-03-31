@@ -21,3 +21,4 @@ const upload = multer();
 app.use(upload.array());
 
 mongodb://localhost:27017/lamsonwatch
+mongodb+srv://e-commerce:3wVR5OJWgRTb5gZp@e-commerce.sztyhh8.mongodb.net/?retryWrites=true&w=majority
