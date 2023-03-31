@@ -55,7 +55,8 @@ const createdProduct = async (req, res) => {
     // const { image, images } = req.files || {};
     // const file = req.files["image"]?.[0];
     // const files = req.files["images"];
-    const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
+    //const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
+    const basePath = `${process.env.BACKEND_URL}/public/uploads/`;
 
     const file = req.files && req.files["image"] ? req.files["image"][0] : null;
     const files = req.files && req.files["images"] ? req.files["images"] : null;
