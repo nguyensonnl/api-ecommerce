@@ -19,3 +19,5 @@ Error do waste time
 const multer = require("multer");
 const upload = multer();
 app.use(upload.array());
+
+mongodb://localhost:27017/lamsonwatch
