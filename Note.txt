@@ -1,0 +1,21 @@
+*Set up:
+npm init -y
+npm run "make name"
+
+npm i:
+_express
+_dotenv
+_express-async-handler
+_jsonwebtoken
+_mongoose
+_bcrypt
+
+npm i -D:
+_nodemon
+
+babel
+
+Error do waste time
+const multer = require("multer");
+const upload = multer();
+app.use(upload.array());
