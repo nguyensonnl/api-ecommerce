@@ -28,3 +28,7 @@ mongodb+srv://e-commerce:3wVR5OJWgRTb5gZp@e-commerce.sztyhh8.mongodb.net/?retryW
         "dest": "/routes/api/product.js"
       },
       { "src": "/(.*)", "dest": "/" },
+
+
+      { "src": "/api/v1/products", "dest": "/src/routes/api/product.js" },
+      { "src": "/(.*)", "dest": "/" },
