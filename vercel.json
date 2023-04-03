@@ -6,7 +6,7 @@
     "routes": [
       {
         "src": "/api/v1/products",
-        "dest": "/api/routes/product.js"
+        "dest": "/routes/api/product.js"
       },
       { "src": "/(.*)", "dest": "/" }
     ]
