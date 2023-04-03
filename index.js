@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//Upload static files
+//Show Upload static files
 app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
 
 app.use("/api/v1", routes);
