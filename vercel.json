@@ -4,6 +4,11 @@
       { "src": "index.js", "use": "@vercel/node" }
     ],
     "routes": [
+      {
+        "src": "/api/v1/products",
+        "methods": ["POST"],
+        "dest": "/api/routes/product.js"
+      },
       { "src": "/(.*)", "dest": "/" }
     ]
 }
