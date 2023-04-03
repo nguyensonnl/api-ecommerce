@@ -11,6 +11,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("*", function (req, res) {
+  res.sendFile(__dirname + "/index.html");
+});
+
 //Show Upload static files
 app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
 
