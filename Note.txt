@@ -22,3 +22,9 @@ app.use(upload.array());
 
 mongodb://localhost:27017/lamsonwatch
 mongodb+srv://e-commerce:3wVR5OJWgRTb5gZp@e-commerce.sztyhh8.mongodb.net/?retryWrites=true&w=majority
+
+{
+        "src": "/api/v1/products",
+        "dest": "/routes/api/product.js"
+      },
+      { "src": "/(.*)", "dest": "/" },
