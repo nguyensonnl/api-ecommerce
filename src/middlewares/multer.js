@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
     if (isValid) {
       uploadError = null;
     }
-    cb(uploadError, "public/uploads");
+    cb(uploadError, "src/public/uploads");
   },
   filename: function (req, file, cb) {
     const fileName = file.originalname.split(" ").join("-");
@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 const uploadFile = multer({ storage: storage });
 const fs = require("fs");
 const path = require("path");
-const uploadDir = path.join(__dirname, "..", "public", "uploads");
+const uploadDir = path.join(__dirname, "public", "uploads");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
