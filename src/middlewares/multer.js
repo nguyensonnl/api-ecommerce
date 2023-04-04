@@ -1,4 +1,6 @@
 const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
 
 //setup upload files
 const FILE_TYPE_MAP = {
@@ -14,7 +16,14 @@ const storage = multer.diskStorage({
     if (isValid) {
       uploadError = null;
     }
-    cb(uploadError, "src/public/uploads");
+
+    const uploadDir = path.join(__dirname, "..", "public", "uploads");
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir);
+    }
+
+    //cb(uploadError, "src/public/uploads");
+    cb(uploadError, uploadDir);
   },
   filename: function (req, file, cb) {
     const fileName = file.originalname.split(" ").join("-");
