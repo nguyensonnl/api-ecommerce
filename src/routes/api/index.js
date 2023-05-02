@@ -9,7 +9,7 @@ const orderRoute = require("./order");
 const router = express.Router();
 
 router.use("/users", userRoute);
-router.use("/customer", customerRoute);
+router.use("/customers", customerRoute);
 router.use("/products", produdctRoute);
 router.use("/brands", brandRoute);
 router.use("/categories", categoryRoute);

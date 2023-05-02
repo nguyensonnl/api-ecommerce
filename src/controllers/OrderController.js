@@ -83,6 +83,7 @@ const createdOrder = async (req, res, next) => {
       note: req.body.note,
       status: req.body.status,
       totalPrice: totalPrice,
+      methodPayment: req.body.methodPayment,
     });
 
     order = await order.save();
