@@ -8,11 +8,12 @@ const middlewareFile = uploadFile.fields([
 ]);
 
 router.route("/").get(ProductController.getAllProduct);
-router.route("/:id").get(ProductController.getProductByID);
+//router.route("/:id").get(ProductController.getProductByID);
 router.route("/").post(middlewareFile, ProductController.createdProduct);
 router.route("/:id").put(ProductController.updatedProduct);
 router.route("/:id").delete(ProductController.deletedProduct);
 router.route("/get/count").get(ProductController.getCountProduct);
 router.route("/get/featured/:count").get(ProductController.getProductFeatured);
+router.route("/:slug").get(ProductController.getProductBySlug);
 
 module.exports = router;
