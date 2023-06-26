@@ -98,7 +98,10 @@ const getAllProduct = async (req, res) => {
 
 const getProductBySlug = async (req, res) => {
   try {
-    let product = await Product.findOne({ slug: req.params.slug });
+    let product = await Product.findOne({ slug: req.params.slug }).populate(
+      "brand",
+      "name"
+    );
 
     if (!product) {
       res.status(500).json({ success: false });
