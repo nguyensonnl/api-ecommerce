@@ -23,12 +23,8 @@ app.use(upload.array());
 mongodb://localhost:27017/lamsonwatch
 mongodb+srv://e-commerce:3wVR5OJWgRTb5gZp@e-commerce.sztyhh8.mongodb.net/?retryWrites=true&w=majority
 
-{
-        "src": "/api/v1/products",
-        "dest": "/routes/api/product.js"
-      },
-      { "src": "/(.*)", "dest": "/" },
+#MONGODB_URI = mongodb+srv://e-commerce:3wVR5OJWgRTb5gZp@e-commerce.sztyhh8.mongodb.net/?retryWrites=true&w=majority
+MONGODB_URI=mongodb://localhost:27017/lamsonwatch
+PORT= 5050
+TOKEN_SECRET_KEY= ggsg6s786fs87d6fsd8f6ds8f6ds8f7
 
-
-      { "src": "/api/v1/products", "dest": "/src/routes/api/product.js" },
-      { "src": "/(.*)", "dest": "/" },

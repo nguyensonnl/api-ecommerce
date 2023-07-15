@@ -1,10 +1,32 @@
 const Order = require("../models/Order");
 const OrderItem = require("../models/OrderItem");
 
+// const OrderControler = {};
+
+// OrderControler.getAllOrder = async (req, res, next) => {
+//   try {
+//     const orders = await Order.find()
+//       .populate("customer_id")
+//       .sort({ dateOrdered: 1 });
+//     if (!orders) {
+//       return res.status(500).json({ success: false });
+//     }
+//     return res.status(200).json(orders);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(400).json({
+//       message: "Failed",
+//       err: error,
+//     });
+//   }
+// };
+
+// module.exports = OrderControler;
+
 const getAllOrder = async (req, res, next) => {
   try {
     const orders = await Order.find()
-      .populate("customer_id", "name")
+      .populate("customer_id")
       .sort({ dateOrdered: -1 });
 
     if (!orders) {
@@ -21,13 +43,14 @@ const getAllOrder = async (req, res, next) => {
   }
 };
 
+//get detail order
 const getOrderById = async (req, res, next) => {
   try {
     const order = await Order.findById(req.params.id)
-      .populate("customer_id", "name")
+      .populate("customer_id")
       .populate({
-        path: "orderItem_id",
-        populate: { path: "product", populate: "category" },
+        path: "orderItem_id", //field in Order
+        populate: { path: "product_id", populate: "category" },
       });
     if (!order) {
       res
@@ -199,7 +222,7 @@ const getAllCutomerOfOrder = async (req, res, next) => {
       customer_id: req.params.customerid,
     })
       .populate({
-        path: "orderItem_id",
+        path: "orderItem_id", //field in document
         populate: { path: "product", populate: "category" },
       })
       .sort({ " dateOrdered": -1 });

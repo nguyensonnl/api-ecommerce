@@ -5,6 +5,7 @@ const brandRoute = require("./brand");
 const categoryRoute = require("./category");
 const produdctRoute = require("./product");
 const orderRoute = require("./order");
+const uploadRoute = require("./upload");
 
 const router = express.Router();
 
@@ -14,5 +15,7 @@ router.use("/products", produdctRoute);
 router.use("/brands", brandRoute);
 router.use("/categories", categoryRoute);
 router.use("/orders", orderRoute);
+
+router.use("/upload", uploadRoute);
 
 module.exports = router;

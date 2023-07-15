@@ -139,27 +139,23 @@ const createdProduct = async (req, res) => {
       return res.status(400).send("Invalid Category");
     }
 
-    // const { image, images } = req.files || {};
-    // const file = req.files["image"]?.[0];
-    // const files = req.files["images"];
     //const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
-    //const basePath = `${process.env.BACKEND_URL}/public/uploads/`;
-    const basePath = `/public/uploads/`;
+    // const basePath = `/public/uploads/`;
+    // const file = req.files && req.files["image"] ? req.files["image"][0] : null;
+    // const files = req.files && req.files["images"] ? req.files["images"] : null;
 
-    const file = req.files && req.files["image"] ? req.files["image"][0] : null;
-    const files = req.files && req.files["images"] ? req.files["images"] : null;
+    // if (!file) {
+    //   return res.status(400).send("Missing image(s) in the request");
+    // }
+    // const singleUpload = `${file.filename}`;
 
-    if (!file) {
-      return res.status(400).send("Missing image(s) in the request");
-    }
-    const singleUpload = `${basePath}${file.filename}`;
+    // let imagesPaths = [];
 
-    let imagesPaths = [];
-    if (!files) {
-      return res.status(400).send("No images in the request");
-    } else {
-      files.map((file) => imagesPaths.push(`${basePath}${file.filename}`));
-    }
+    // if (!files) {
+    //   return res.status(400).send("No images in the request");
+    // } else {
+    //   files.map((file) => imagesPaths.push(`${file.filename}`));
+    // }
 
     // const file = req.files["image"]?.[0];
     // const files = req.files["images"] || [];
@@ -176,7 +172,7 @@ const createdProduct = async (req, res) => {
     //   return res.status(400).send("No images in the request");
     // }
 
-    const { name } = req.body;
+    const name = req.body.name;
     let product = await Product.findOne({ name });
     if (product) {
       return res.status(400).json({
@@ -189,8 +185,10 @@ const createdProduct = async (req, res) => {
       name: req.body.name,
       description: req.body.description,
       richDescription: req.body.richDescription,
-      image: singleUpload,
-      images: imagesPaths,
+      image: req.body.image,
+      images: req.body.images,
+      //image: singleUpload,
+      //   images: imagesPaths,
       brand: req.body.brand,
       price: req.body.price,
       category: req.body.category,
@@ -201,6 +199,7 @@ const createdProduct = async (req, res) => {
     });
 
     product = await product.save();
+
     if (!product) {
       return res.status(500).send("The product cannot be created");
     }
@@ -256,8 +255,7 @@ const updatedProduct = async (req, res, next) => {
       }
     );
 
-    if (!product)
-      return res.status(500).send("the category cannot be updated!");
+    if (!product) return res.status(500).send("Product cannot be updated!");
 
     res.send(product);
   } catch (e) {

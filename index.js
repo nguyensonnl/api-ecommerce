@@ -4,6 +4,7 @@ require("dotenv").config();
 const dbConnect = require("./src/config/dbConnect");
 dbConnect();
 const routes = require("./src/routes/api/index");
+const path = require("path");
 
 const app = express();
 
@@ -37,7 +38,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //static files
-app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
+const urlImage = express.static(path.join(__dirname, "/src/public/uploads"));
+app.use("/public/uploads", urlImage);
 
 //define routes
 app.use("/api/v1", routes);
