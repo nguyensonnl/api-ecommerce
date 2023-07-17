@@ -37,7 +37,11 @@ const createdCatetory = async (req, res, next) => {
     if (!category) {
       return res.status(404).send("the category cannot be created!");
     }
-    res.send(category);
+    //res.send(category);
+    res.status(200).json({
+      message: "Success",
+      category,
+    });
   } catch (e) {
     console.log(e);
     res.status(400).json({
