@@ -69,7 +69,20 @@ const login = async (req, res, next) => {
   }
 };
 
+const getAllCustomer = async (req, res) => {
+  try {
+    const customers = await Customer.find();
+    if (!customers) {
+      return res.status(500).json("Failed");
+    }
+    return res.status(200).json({ message: "Success", customers });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   register,
   login,
+  getAllCustomer,
 };
