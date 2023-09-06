@@ -24,8 +24,14 @@ const OrderItem = require("../models/OrderItem");
 // module.exports = OrderControler;
 
 const getAllOrder = async (req, res, next) => {
+  let filter = {};
+  if (req.query.status) {
+    filter = { status: req.query.status };
+  }
+
+  //?status=pending
   try {
-    const orders = await Order.find()
+    const orders = await Order.find(filter)
       .populate("customer_id")
       .sort({ dateOrdered: -1 });
 
@@ -43,7 +49,26 @@ const getAllOrder = async (req, res, next) => {
   }
 };
 
-//get detail order
+const getCountOrders = async (req, res, next) => {
+  try {
+    const orderCount = await Order.countDocuments((count) => count);
+
+    if (!orderCount) {
+      res.status(500).json({ success: false });
+    }
+    res.send({
+      count: orderCount,
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(400).json({
+      success: false,
+      message: "Failed",
+      err: e,
+    });
+  }
+};
+
 const getOrderById = async (req, res, next) => {
   try {
     const order = await Order.findById(req.params.id)
@@ -196,16 +221,28 @@ const totalPriceOrders = async (req, res, next) => {
   }
 };
 
-const getCountOrders = async (req, res, next) => {
+const getOrdersByCustomerID = async (req, res) => {
   try {
-    const orderCount = await Order.countDocuments((count) => count);
+    let query = Order.find({ customer_id: req.params.id }).sort({
+      dateOrdered: -1,
+    });
 
-    if (!orderCount) {
+    if (req.query.status) {
+      const statusOrder = req.query.status;
+      query = query.where("status").in(statusOrder);
+    }
+
+    const orders = await query;
+
+    // const orders = await Order.find({
+    //   customer_id: req.params.id,
+    //   filter,
+    // }).sort({ " dateOrdered": -1 });
+
+    if (!orders) {
       res.status(500).json({ success: false });
     }
-    res.send({
-      count: orderCount,
-    });
+    return res.status(200).json(orders);
   } catch (e) {
     console.log(e);
     res.status(400).json({
@@ -230,7 +267,7 @@ const getAllCutomerOfOrder = async (req, res, next) => {
     if (!listCustomerOrder) {
       res.status(500).json({ success: false });
     }
-    return json.send(listCustomerOrder);
+    return res.send(listCustomerOrder);
   } catch (e) {
     console.log(e);
     res.status(400).json({
@@ -250,4 +287,5 @@ module.exports = {
   totalPriceOrders,
   getCountOrders,
   getAllCutomerOfOrder,
+  getOrdersByCustomerID,
 };

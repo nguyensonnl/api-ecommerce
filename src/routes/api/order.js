@@ -13,4 +13,6 @@ router
   .route("/get/customerorder/:customerid")
   .get(OrderControler.getAllCutomerOfOrder);
 
+router.get("/customer/:id", OrderControler.getOrdersByCustomerID);
+
 module.exports = router;

@@ -1,7 +1,6 @@
-*Set up:
+#Setup:
 npm init -y
 npm run "make name"
-
 npm i:
 _express
 _dotenv
@@ -15,16 +14,25 @@ _nodemon
 
 babel
 
-Error do waste time
-const multer = require("multer");
-const upload = multer();
-app.use(upload.array());
-
+#.env
 mongodb://localhost:27017/lamsonwatch
 mongodb+srv://e-commerce:3wVR5OJWgRTb5gZp@e-commerce.sztyhh8.mongodb.net/?retryWrites=true&w=majority
 
-#MONGODB_URI = mongodb+srv://e-commerce:3wVR5OJWgRTb5gZp@e-commerce.sztyhh8.mongodb.net/?retryWrites=true&w=majority
+MONGODB_URI = mongodb+srv://e-commerce:3wVR5OJWgRTb5gZp@e-commerce.sztyhh8.mongodb.net/?retryWrites=true&w=majority
 MONGODB_URI=mongodb://localhost:27017/lamsonwatch
 PORT= 5050
 TOKEN_SECRET_KEY= ggsg6s786fs87d6fsd8f6ds8f6ds8f7
+
+#Bugs:
+-Not yet validation
+-Error make waste time:
+const multer = require("multer");
+const upload = multer();
+app.use(upload.array());
+-Should use editor
+
+#Tech:
+.Language: Javascript
+.Framework: Nodejs, Express
+.Database: MongoDB(mongoose)
 
