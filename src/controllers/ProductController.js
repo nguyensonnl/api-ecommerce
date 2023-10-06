@@ -18,8 +18,8 @@ const getAllProduct = async (req, res) => {
       "fields",
       "categories",
       "name",
-	  "price_max",
-	  "price_min"
+      "price_max",
+      "price_min",
     ];
     excludedFields.forEach((el) => delete queryObj[el]);
 
@@ -45,13 +45,13 @@ const getAllProduct = async (req, res) => {
     } else {
       query = query.select("-__v");
     }
-	
-	if(req.query.price_min && req.query.price_max){
-		const minPrice = parseFloat(req.query.price_min);
-		const maxPrice = parseFloat(req.query.price_max);
-	
-		query = query.where("price").gte(minPrice).lte(maxPrice);
-	}
+
+    if (req.query.price_min && req.query.price_max) {
+      const minPrice = parseFloat(req.query.price_min);
+      const maxPrice = parseFloat(req.query.price_max);
+
+      query = query.where("price").gte(minPrice).lte(maxPrice);
+    }
 
     // Count total number of items in the database
     const totalCount = await Product.countDocuments();
